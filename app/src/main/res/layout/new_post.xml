@@ -16,7 +16,7 @@
         android:layout_weight="0.03" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/tipas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/type"
@@ -31,7 +31,7 @@
     </EditText>
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/uzsakymai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/orders"
@@ -46,7 +46,7 @@
     </EditText>
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/technika"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/technique"
@@ -69,13 +69,14 @@
     </EditText>
 
     <Spinner
+        android:id="@+id/reguliavimas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/length"
         android:prompt="@string/reguliavimas"/>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pridėti įrašą"
