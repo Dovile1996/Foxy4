@@ -44,32 +44,32 @@ public class SignUp extends MainActivity {
                 View focusView = null;
 
                 if (!isValid(username)) {
-                    mUsernameView.setError("Neteisingas vartotojo vardas.");
+                    mUsernameView.setError("Neteisingas vartotojo vardas");
                     focusView = mPasswordView;
                     cancel = true;
                 }
                 if (!isValid(password)) {
-                    mPasswordView.setError("Neteisingas slaptažodis.");
+                    mPasswordView.setError("Neteisingas slaptažodis");
                     focusView = mPasswordView;
                     cancel = true;
                 }
                 if (!isValid2(email)) {
-                    mEmailView.setError("Neteisingas el.paštas.");
+                    mEmailView.setError("Neteisingas el.paštas");
                     focusView = mEmailView;
                     cancel = true;
                 }
                 if (password2.matches("")) {
-                    mPassword2View.setError("Pakartokite slaptažodį.");
+                    mPassword2View.setError("Pakartokite slaptažodį");
                     focusView = mPassword2View;
                     cancel = true;
                 }
                 if (password.matches(username)) {
-                    mPasswordView.setError("Prisijungimo vardas ir slaptažodis negali sutapti.");
+                    mPasswordView.setError("Prisijungimo vardas ir slaptažodis negali sutapti");
                     focusView = mPasswordView;
                     cancel = true;
                 }
                 if (!password.matches(password2)) {
-                    mPassword2View.setError("Slaptažodžiai nesutampa.");
+                    mPassword2View.setError("Slaptažodžiai nesutampa");
                     focusView = mPassword2View;
                     cancel = true;
                 }
