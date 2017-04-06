@@ -64,44 +64,45 @@ public class NewPost extends SecondActivity {
                     cancel = true;
                 }
 
-               final Spinner tipas = (Spinner) findViewById(R.id.tipas);
+                final Spinner tipas2 = (Spinner) findViewById(R.id.tipas);
                 final EditText kiekisEditText = (EditText) findViewById(R.id.kiekis);
-                final Spinner uzsakymai = (Spinner) findViewById(R.id.uzsakymai);
+                final Spinner uzsakymai2 = (Spinner) findViewById(R.id.uzsakymai);
                 final EditText kainaEditText = (EditText) findViewById(R.id.kaina);
-                final Spinner technika = (Spinner) findViewById(R.id.technika);
-                final   EditText ilgisEditText = (EditText) findViewById(R.id.ilgis);
+                final Spinner technika2 = (Spinner) findViewById(R.id.technika);
+                final EditText ilgisEditText = (EditText) findViewById(R.id.ilgis);
                 final  EditText plotisEditText = (EditText) findViewById(R.id.plotis);
-                final Spinner reguliavimas = (Spinner) findViewById(R.id.reguliavimas);
+                final Spinner reguliavimas2 = (Spinner) findViewById(R.id.reguliavimas);
 
-                //@Override
-
-                //public void onClick (View v)
-                        //{
-                        String sKiekis = kiekisEditText.getText().toString();
+                String sKiekis = kiekisEditText.getText().toString();
+                double kiekis2 = Double.parseDouble(sKiekis);
                 String sKaina = kainaEditText.getText().toString();
+                double kaina2 = Double.parseDouble(sKaina);
                 String sIlgis = ilgisEditText.getText().toString();
+                double ilgis2 = Double.parseDouble(sIlgis);
                 String sPlotis = plotisEditText.getText().toString();
-                if (sKiekis.matches("") || sKaina.matches("") || sIlgis.matches("") || sPlotis.matches("")) {
-                    Toast.makeText(NewPost.this, "Patikrinkite, ar įvedėte visus duomenis.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                double plotis2 = Double.parseDouble(sPlotis);
+
 
                 Toast.makeText(NewPost.this,
-                        String.valueOf(tipas.getSelectedItem()) + "\n" +
+                        String.valueOf(tipas2.getSelectedItem()) + "\n" +
                                 kiekisEditText.getText() + "\n" +
-                                String.valueOf(uzsakymai.getSelectedItem()) + "\n" +
+                                String.valueOf(uzsakymai2.getSelectedItem()) + "\n" +
                                 kainaEditText.getText() + "\n" +
-                                String.valueOf(technika.getSelectedItem()) + "\n" +
+                                String.valueOf(technika2.getSelectedItem()) + "\n" +
                                 ilgisEditText.getText() + "\n" +
                                 plotisEditText.getText() + "\n" +
-                                String.valueOf(reguliavimas.getSelectedItem()),
+                                String.valueOf(reguliavimas2.getSelectedItem()),
                         Toast.LENGTH_SHORT).show();
                 if (cancel) {
                     focusView.requestFocus();
                 }
+
                 else {
                     Intent intent = new Intent(NewPost.this, NewPost.class);
                     startActivity(intent);
+                   // Rankdarbis rankdarbis = new Rankdarbis(String tipas2, double kiekis2, String uzsakymai2, double kaina2, String technika2, double ilgis2, double plotis2, double reguliavimas2);
+                    }
+
                 }
             }
 

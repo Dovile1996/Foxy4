@@ -68,7 +68,7 @@ public class SignUp extends MainActivity {
                     focusView = mPasswordView;
                     cancel = true;
                 }
-                if (!password.matches(password2)) {
+                if (!password2.matches("") && !password.matches(password2)) {
                     mPassword2View.setError("Slaptažodžiai nesutampa");
                     focusView = mPassword2View;
                     cancel = true;
