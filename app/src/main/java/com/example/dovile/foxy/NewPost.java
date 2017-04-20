@@ -70,7 +70,7 @@ public class NewPost extends SecondActivity {
                 final EditText kainaEditText = (EditText) findViewById(R.id.kaina);
                 final Spinner technika2 = (Spinner) findViewById(R.id.technika);
                 final EditText ilgisEditText = (EditText) findViewById(R.id.ilgis);
-                final  EditText plotisEditText = (EditText) findViewById(R.id.plotis);
+                final EditText plotisEditText = (EditText) findViewById(R.id.plotis);
                 final Spinner reguliavimas2 = (Spinner) findViewById(R.id.reguliavimas);
 
                 String sKiekis = kiekisEditText.getText().toString();
@@ -82,7 +82,21 @@ public class NewPost extends SecondActivity {
                 String sPlotis = plotisEditText.getText().toString();
                 double plotis2 = Double.parseDouble(sPlotis);
 
+                Rankdarbis irasasRankdarbis= new Rankdarbis (String.valueOf(tipas2.getSelectedItem()),
+                        kiekis2, String.valueOf(uzsakymai2.getSelectedItem()),
+                        kaina2, String.valueOf(technika2.getSelectedItem()), ilgis2, plotis2, String.valueOf(reguliavimas2.getSelectedItem()));
+                /*
 
+                 this.tipas2 = tipas2;
+        this.kiekis2 = kiekis2;
+        this.uzsakymai2 = uzsakymai2;
+        this.kaina2 = kaina2;
+        this.technika2 = technika2;
+        this.ilgis2 = ilgis2;
+        this.plotis2 = plotis2;
+        this.reguliavimas2 = reguliavimas2;
+
+                 */
                 Toast.makeText(NewPost.this,
                         String.valueOf(tipas2.getSelectedItem()) + "\n" +
                                 kiekisEditText.getText() + "\n" +
@@ -104,10 +118,9 @@ public class NewPost extends SecondActivity {
                     }
 
                 }
-            }
-
         });
     }
+
 
     private boolean isValid(String credentials) {
         final String CREDENTIALS_PATTERN = "^([0-9])+$";

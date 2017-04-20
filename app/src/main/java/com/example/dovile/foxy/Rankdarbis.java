@@ -8,9 +8,9 @@ public class Rankdarbis {
     private String technika2;
     private double ilgis2;
     private double plotis2;
-    private double reguliavimas2;
+    private String reguliavimas2;
 
-    public Rankdarbis(String tipas2, double kiekis2, String uzsakymai2, double kaina2, String technika2, double ilgis2, double plotis2, double reguliavimas2) {
+    public Rankdarbis(String tipas2, double kiekis2, String uzsakymai2, double kaina2, String technika2, double ilgis2, double plotis2, String reguliavimas2) {
         this.tipas2 = tipas2;
         this.kiekis2 = kiekis2;
         this.uzsakymai2 = uzsakymai2;
@@ -77,11 +77,11 @@ public class Rankdarbis {
         this.plotis2 = plotis2;
     }
 
-    public double getReguliavimas2() {
+    public String getReguliavimas2() {
         return reguliavimas2;
     }
 
-    public void setReguliavimas2(double reguliavimas2) {
+    public void setReguliavimas2(String reguliavimas2) {
         this.reguliavimas2 = reguliavimas2;
     }
 }

@@ -1,32 +1,40 @@
 package com.example.dovile.foxy;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUp extends MainActivity {
-    private EditText mUsernameView;
-    private EditText mPasswordView;
-    private EditText mPassword2View;
-    private EditText mEmailView;
+
+    private static final String REGISTER_URL = "http://foxy.byethost14.com/mobile/register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
-        Button registruotis = (Button) findViewById(R.id.button3);
 
-        mUsernameView = (EditText) findViewById(R.id.Vart);
-        mPasswordView = (EditText) findViewById(R.id.Slapt1);
-        mPassword2View = (EditText) findViewById(R.id.Slapt2);
-        mEmailView = (EditText) findViewById(R.id.Elp);
+       final EditText mUsernameView = (EditText) findViewById(R.id.Vart);
+        final EditText mPasswordView = (EditText) findViewById(R.id.Slapt1);
+        final EditText  mPassword2View = (EditText) findViewById(R.id.Slapt2);
+        final EditText  mEmailView = (EditText) findViewById(R.id.Elp);
+
+        Button registruotis = (Button) findViewById(R.id.button3);
 
         registruotis.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -42,6 +50,8 @@ public class SignUp extends MainActivity {
 
                 boolean cancel = false;
                 View focusView = null;
+
+                Vartotojas naujasVartotojas= new Vartotojas (email, username, password);
 
                 if (!isValid(username)) {
                     mUsernameView.setError("Neteisingas vartotojo vardas");
@@ -77,11 +87,61 @@ public class SignUp extends MainActivity {
                     focusView.requestFocus();
                 }
                 else {
-                    Intent intent = new Intent(SignUp.this, SecondActivity.class);
+                    Intent intent = new Intent(SignUp.this, MainActivity.class);
                     startActivity(intent);
+                    Toast.makeText(SignUp.this, "Registracija sėkminga!",
+                            Toast.LENGTH_LONG).show();
                 }
+
             }
         });
+    }
+
+    private void registerUser(String username, String password, String email) {
+        String urlSuffix = "?username="+username+"&password="+password+"&email="+email;
+        class RegisterUser extends AsyncTask<String, Void, String> {
+
+            ProgressDialog loading;
+
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(SignUp.this, "Prašome palaukti",null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+                String s = params[0];
+                BufferedReader bufferedReader = null;
+                try {
+                    URL url = new URL(REGISTER_URL+s);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+
+                    con.setRequestProperty("Cookie", "__test=THE_CONTENT_OF_YOUR_COOKIE_HERE; expires=2038 m. sausio 1 d., penktadienis 01:55:55; path=/");
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                    String result;
+
+                    result = bufferedReader.readLine();
+
+                    return result;
+                }catch(Exception e){
+                    return null;
+                }
+            }
+        }
+
+        RegisterUser ru = new RegisterUser();
+        ru.execute(urlSuffix);
     }
 
     private boolean isValid(String credentials){
@@ -91,7 +151,7 @@ public class SignUp extends MainActivity {
         return matcher.matches();
     }
     private boolean isValid2(String credentials){
-        final String CREDENTIALS_PATTERN2 ="^([0-9a-zA-Z]+@+[a-z]+.+[a-z])+$";
+        final String CREDENTIALS_PATTERN2 ="^([0-9a-zA-Z.]+@+[a-z]+.+[a-z])+$";
         Pattern pattern2 =Pattern.compile(CREDENTIALS_PATTERN2);
         Matcher matcher = pattern2.matcher(credentials);
         return matcher.matches();
